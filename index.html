@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Compressor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Image Compressor</h1>
+
+<input type="file" id="imageInput" accept="image/*">
+
+<br><br>
+
+<label>Target Size (KB)</label>
+
+<input type="number" id="targetSize" placeholder="Enter KB">
+
+<br><br>
+
+<button id="compressBtn">
+Compress Image
+</button>
+
+<br><br>
+
+<img id="preview" style="display:none;">
+
+<br><br>
+
+<a id="downloadBtn" style="display:none;">
+<button>Download Image</button>
+</a>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+  </html>
