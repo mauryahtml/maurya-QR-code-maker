@@ -1,28 +1,58 @@
 const imageInput = document.getElementById("imageInput");
 const preview = document.getElementById("preview");
+const compressBtn = document.getElementById("compressBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const targetSize = document.getElementById("targetSize");
 
-imageInput.addEventListener("change", function(){
+let selectedImage = null;
 
-const file = this.files[0];
+imageInput.addEventListener("change", function () {
 
-if(!file) return;
+    const file = this.files[0];
 
-const reader = new FileReader();
+    if (!file) return;
 
-reader.onload = function(e){
+    const reader = new FileReader();
 
-preview.src = e.target.result;
+    reader.onload = function (e) {
 
-preview.style.display = "block";
+        preview.src = e.target.result;
+        preview.style.display = "block";
 
-}
+        const img = new Image();
 
-reader.readAsDataURL(file);
+        img.onload = function () {
+            selectedImage = img;
+        };
+
+        img.src = e.target.result;
+
+    };
+
+    reader.readAsDataURL(file);
 
 });
 
-document.getElementById("compressBtn").addEventListener("click",function(){
+compressBtn.addEventListener("click", function () {
 
-alert("Compression feature next part me add karenge.");
+    if (!selectedImage) {
+        alert("Please select image first.");
+        return;
+    }
+
+    if (targetSize.value === "") {
+        alert("Enter target size.");
+        return;
+    }
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = selectedImage.width;
+    canvas.height = selectedImage.height;
+
+    ctx.drawImage(selectedImage, 0, 0);
+
+    alert("Canvas Engine Ready.\nNext part me real compression algorithm add hoga.");
 
 });
